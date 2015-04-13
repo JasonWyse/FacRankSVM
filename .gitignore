@@ -4,3 +4,6 @@ Debug/
 *.user
 *.txt
 *.model
+*.o
+predict
+train
