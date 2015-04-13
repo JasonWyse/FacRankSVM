@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wconversion -O3 -fPIC
 LIBS = blas/blas.a
 #LIBS = -lblas
 
-all: train predict train-fig56
+all: FacRankSVM_learn FacRankSVM_predict train-fig56
 
 train-fig56: tron-fig56.o linear-fig56.o binarytrees.o selectiontree.o train.cpp blas/blas.a
 	$(CXX) $(CFLAGS) -D FIGURE56 -o train-fig56 train.cpp tron-fig56.o binarytrees.o selectiontree.o linear-fig56.o $(LIBS)
@@ -15,11 +15,11 @@ tron-fig56.o: tron.cpp tron.h
 linear-fig56.o: linear.cpp linear.h
 	$(CXX) $(CFLAGS) -D FIGURE56 -c -o linear-fig56.o linear.cpp
 
-train: tron.o binarytrees.o selectiontree.o linear.o train.cpp blas/blas.a
-	$(CXX) $(CFLAGS) -o train train.cpp tron.o binarytrees.o selectiontree.o linear.o $(LIBS)
+FacRankSVM_learn: tron.o binarytrees.o selectiontree.o linear.o train.cpp blas/blas.a
+	$(CXX) $(CFLAGS) -o FacRankSVM_learn train.cpp tron.o binarytrees.o selectiontree.o linear.o $(LIBS)
 
-predict: tron.o binarytrees.o selectiontree.o linear.o predict.cpp blas/blas.a
-	$(CXX) $(CFLAGS) -o predict predict.cpp tron.o binarytrees.o selectiontree.o linear.o $(LIBS)
+FacRankSVM_predict: tron.o binarytrees.o selectiontree.o linear.o predict.cpp blas/blas.a
+	$(CXX) $(CFLAGS) -o FacRankSVM_predict predict.cpp tron.o binarytrees.o selectiontree.o linear.o $(LIBS)
 
 tron.o: tron.cpp tron.h
 	$(CXX) $(CFLAGS) -c -o tron.o tron.cpp
@@ -38,4 +38,4 @@ blas/blas.a: blas/*.c blas/*.h
 
 clean:
 	make -C blas clean
-	rm -f *~ selectiontree.o binarytrees.o tron*.o linear*.o train train-fig56 predict
+	rm -f *~ selectiontree.o binarytrees.o tron*.o linear*.o FacRankSVM_learn train-fig56 FacRankSVM_predict
