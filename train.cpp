@@ -125,8 +125,8 @@ int main(int argc, char **argv)
 	//srand( (unsigned)time( NULL ) );  //种子函数
 	for (i=0;i<param.col_size * prob.l;i++)
 	{		
-		//p[i]=rand()/(RAND_MAX+1.0);  //产生随机数的函数
-		p[i]=rand();
+		p[i]=rand()/(RAND_MAX+1.0);  //产生随机数的函数
+		//p[i]=rand();
 	}
 	double ** v_pp = Malloc(double* ,prob.l);
 	param.v_pp = v_pp;
